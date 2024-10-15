@@ -27,16 +27,97 @@ This demonstrates the cconnection of MySQL database and Node.js to create a simp
 
    
    // Question 1 goes here
+   const path = require('path');
+   app.set('views', path.join(__dirname, 'views'));  // Ensure the correct path to your views folder
+   app.set('view engine', 'ejs');  // Use the correct templating engine
+
+   // Retrieve from Database
+   app.get('/get-patients', (req, res) =>{
+      const getPatients = "SELECT patient_id, first_name, last_name, date_of_birth FROM patients"
+      db.query(getPatients, (err, patientsTable) => {
+         // if I have an error
+         if(err) {
+               return res.status(400).send("Failed to get patients details", err)
+         }
+         // I there is no error
+         // res.status(200).send(data)
+
+         // because of ejs, we change send to render
+         res.status(200).render('patientsTable', { patientsTable })
+      
+
+      })
+   })
 
 
    // Question 2 goes here
+   const path = require('path');
+   app.set('views', path.join(__dirname, 'views'));  // Ensure the correct path to your views folder
+   app.set('view engine', 'ejs');  // Use the correct templating engine
 
+   // Retrieve from Database
+   app.get('/get-providers', (req, res) =>{
+      const getPatients = "SELECT first_name, last_name, provider_specialty FROM providers"
+      db.query(getPatients, (err, patientsTable) => {
+         // if I have an error
+         if(err) {
+               return res.status(400).send("Failed to get provider's Name and specialty", err)
+         }
+         // I there is no error
+         // res.status(200).send(data)
+
+         // because of ejs, we change send to render
+         res.status(200).render('patientsTable', { patientsTable })
+      
+
+      })
+   })
 
    // Question 3 goes here
+   const path = require('path');
+   app.set('views', path.join(__dirname, 'views'));  // Ensure the correct path to your views folder
+   app.set('view engine', 'ejs');  // Use the correct templating engine
 
+   // Retrieve from Database
+   app.get('/get-patients', (req, res) =>{
+      const getPatients = "SELECT first_name FROM patients"
+      db.query(getPatients, (err, patientsTable) => {
+         // if I have an error
+         if(err) {
+               return res.status(400).send("Failed to get patients first name", err)
+         }
+         // I there is no error
+         // res.status(200).send(data)
+
+         // because of ejs, we change send to render
+         res.status(200).render('patientsTable', { patientsTable })
+      
+
+      })
+   })
 
    // Question 4 goes here
+   const path = require('path');
+   app.set('views', path.join(__dirname, 'views'));  // Ensure the correct path to your views folder
+   app.set('view engine', 'ejs');  // Use the correct templating engine
 
+   // Retrieve from Database
+   app.get('/get-providers', (req, res) =>{
+      const getPatients = "SELECT provider_specialty FROM providers"
+      db.query(getPatients, (err, patientsTable) => {
+         // if I have an error
+         if(err) {
+               return res.status(400).send("Failed to get provider's specialty", err)
+         }
+         // I there is no error
+         // res.status(200).send(data)
+
+         // because of ejs, we change send to render
+         res.status(200).render('patientsTable', { patientsTable })
+      
+
+      })
+   })
    
 
    // listen to the server
